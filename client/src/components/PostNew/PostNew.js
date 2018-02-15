@@ -11,7 +11,8 @@ class PostNew extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      contentLimitMessage: ''
+      contentLimitMessage: '',
+      emptyErrorMessage: ''
     }
   }
   componentDidMount = () => {
@@ -27,11 +28,13 @@ class PostNew extends Component {
             className="post-new-textarea title"
             type="text"
             autoFocus
+            required
             {...field.input}
           />
           : <textarea
             className="post-new-textarea content"
             type="text"
+            required
             {...field.input}
           />
         }
@@ -39,20 +42,38 @@ class PostNew extends Component {
     );
   }
   onSubmit = (values) => {
+    this.clearErrorMessages();
     if (values.content.length >= contentLimit) {
-      this.setState({
+      return this.setState({
         contentLimitMessage: `Content cannot be over ${contentLimit} characters`
       });
-    } else {
-      this.props.createPostRequest(values).then(() => {
-        this.props.history.push('/');
-      });
     }
+    if (!this.isValidationPassed(values)) {
+      return this.setState({
+        emptyErrorMessage: 'Title and Content cannot be empty'
+      })
+    }
+    this.props.createPostRequest(values).then(() => {
+      this.props.history.push('/');
+    });
+  }
+  isValidationPassed = (values) => {
+    const { content, title } = values;
+    return content.trim() !== '' && title.trim() !== ''
+  }
+  clearErrorMessages = () => {
+    this.setState({
+      contentLimitMessage: '',
+      emptyErrorMessage: ''
+    })
   }
   render() {
     const { handleSubmit } = this.props;
     const contentLimitMessage = (
       <div className="error-message">{ this.state.contentLimitMessage }</div>
+    );
+    const emptyErrorMessage = (
+      <div className="error-message">{ this.state.emptyErrorMessage }</div>
     );
     return (
       <div id="posts-new" ref={el => this.component = el}>
@@ -70,6 +91,9 @@ class PostNew extends Component {
           />
           {
             this.state.contentLimitMessage && contentLimitMessage
+          }
+          {
+            this.state.emptyErrorMessage && emptyErrorMessage
           }
           <div className="footer">
             <TextButton type="submit" className="btn btn-primary">Submit</TextButton>

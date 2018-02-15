@@ -28,11 +28,11 @@ class Post extends Component {
 }
 Post.defaultProps = {
   title: 'title',
-  id: 'id'
+  id: 0
 };
 
 Post.propTypes = {
   title: PropTypes.string,
-  id: PropTypes.string
+  id: PropTypes.number
 };
 export default Post;

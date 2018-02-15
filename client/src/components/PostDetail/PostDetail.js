@@ -16,8 +16,8 @@ class PostDetail extends Component {
     };
   }
   componentWillMount = () => {
-    if(!this.props.post) {
-      this.props.fetchPostsRequest();
+    if(typeof this.props.form === 'string' | !this.props.post) {
+      this.props.fetchPostsRequest().then(() => this.initializeData());
     } else {
       this.initializeData();
     }
