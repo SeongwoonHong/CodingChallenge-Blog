@@ -1,0 +1,21 @@
+#dashboard {
+  position: relative;
+  .header {
+    text-align: center;
+    color: #0275d8;
+    font-size: 35px;
+  }
+  .btn-new {
+    position: absolute;
+    top: 0px;
+    right: 30px;
+  }
+}
+@media screen and (max-width: 500px) {
+  #dashboard .header {
+    font-size: 18px;
+  }
+  #dashboard .btn-new {
+    right: 10px;
+  }
+}
