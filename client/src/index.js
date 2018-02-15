@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import reduxThunk from 'redux-thunk';
 import PostNew from './components/PostNew';
 import PostDetail from './components/PostDetail';
@@ -25,9 +25,10 @@ ReactDOM.render(
     <BrowserRouter>
       <div className="app-container">
         <Switch>
-          <Route path="/posts/new" component={PostNew} />
-          <Route path="/posts/:id" component={PostDetail} />
-          <Route paht="/" component={Dashboard} />
+          <Route exact path="/posts/new" component={PostNew} />
+          <Route exact path="/posts/:id" component={PostDetail} />
+          <Route exact path="/" component={Dashboard} />
+          <Redirect to="/" />
         </Switch>
       </div>
     </BrowserRouter>
