@@ -6,7 +6,7 @@ import Posts from '../../components/Posts';
 import Loader from '../../components/Loader/Loader';
 import './style.css';
 
-class Dashboard extends Component {
+export class Dashboard extends Component {
   componentDidMount = () => {
     if (!this.props.posts.data.length) { // it does not fetch the data if there are post data in redux store already.
       this.props.fetchPostsRequest();
