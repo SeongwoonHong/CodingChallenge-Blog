@@ -8,7 +8,7 @@ import './style.css';
 
 class Dashboard extends Component {
   componentDidMount = () => {
-    if (!this.props.posts.data) { // it does not fetch the data if there are post data in redux store already.
+    if (!this.props.posts.data.length) { // it does not fetch the data if there are post data in redux store already.
       this.props.fetchPostsRequest();
     }
   }

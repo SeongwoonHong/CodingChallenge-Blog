@@ -3,17 +3,17 @@ import * as types from '../actions/types';
 const initialState = {
   newPost: {
     status: 'INIT',
-    data: null,
+    data: [],
     error: null
   },
   fetchPosts: {
     status: 'INIT',
-    data: null,
+    data: [],
     error: null
   },
   fetchPost: {
     status: 'INIT',
-    data: null,
+    data: [],
     error: null
   },
   deletePost: {
