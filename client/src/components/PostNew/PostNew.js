@@ -119,4 +119,4 @@ PostNew.propTypes = {
   clearPostDetail: PropTypes.func,
   updatePost: PropTypes.func
 };
-export default withRouter(PostNew);
+export default PostNew;
